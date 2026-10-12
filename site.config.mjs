@@ -5,11 +5,7 @@ export const SITE = {
   url: 'https://thefastdesigns.com',
   description:
     'The Fast Designs is a web design and development agency building fast, conversion-focused websites, e-commerce stores and web apps for ambitious brands.',
-  email: 'hello@thefastdesigns.com',
-  phone: '+1 (555) 010-2040',
-  phoneHref: '+15550102040',
-  whatsapp: 'https://wa.me/15550102040',
-  location: 'Remote-first · Serving clients worldwide',
+  email: 'elonopo@gmail.com',
   // Free key from https://web3forms.com (enter the email that should receive leads). Forms email you on submit.
   formAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
   social: [

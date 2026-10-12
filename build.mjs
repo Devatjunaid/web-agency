@@ -5,6 +5,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, NAV } from './site.config.mjs';
 import { renderArt } from './src/art.mjs';
+import { PORTFOLIO, CASE_STUDIES } from './src/portfolio.mjs';
+import { workCard, portfolioFilters, caseCard, caseStudyPage } from './src/case-study.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(ROOT, 'src');
@@ -56,7 +58,7 @@ function header(current) {
       <li style="--i:${NAV.length}"><a href="/get-a-quote" class="mmenu__cta">Get a Quote →</a></li>
     </ul>
   </nav>
-  <div class="mmenu__foot"><a href="mailto:${SITE.email}">${SITE.email}</a><a href="tel:${SITE.phoneHref}">${SITE.phone}</a></div>
+  <div class="mmenu__foot"><a href="mailto:${SITE.email}">${SITE.email}</a></div>
 </div>`;
 }
 
@@ -92,9 +94,8 @@ function footer() {
         <h2 class="footer__h">Contact</h2>
         <ul>
           <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-          <li><a href="tel:${SITE.phoneHref}">${SITE.phone}</a></li>
-          <li><a href="${SITE.whatsapp}" target="_blank" rel="noopener">WhatsApp us</a></li>
-          <li>${SITE.location}</li>
+          <li><a href="/get-a-quote">Request a quote</a></li>
+          <li><a href="/contact">Send a message</a></li>
         </ul>
       </div>
     </div>
@@ -122,7 +123,8 @@ function layout({ meta, body, route }) {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url + '/' },
-            { '@type': 'ListItem', position: 2, name: meta.crumb || title, item: url },
+            ...(meta.parent ? [{ '@type': 'ListItem', position: 2, name: meta.parent[0], item: SITE.url + meta.parent[1] }] : []),
+            { '@type': 'ListItem', position: meta.parent ? 3 : 2, name: meta.crumb || title, item: url },
           ],
         };
   const org = {
@@ -133,7 +135,6 @@ function layout({ meta, body, route }) {
     logo: SITE.url + '/assets/img/logo.svg',
     image: og,
     email: SITE.email,
-    telephone: SITE.phone,
     description: SITE.description,
     areaServed: 'Worldwide',
     sameAs: SITE.social.map((s) => s.href),
@@ -169,7 +170,8 @@ function layout({ meta, body, route }) {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css?v=${BUILD}">
-${schemas.map((s) => `<script type="application/ld+json">${JSON.stringify(s)}</script>`).join('\n')}
+${meta.extraHead || ''}
+${schemas.map((s) => `<script type="application/ld+json">${JSON.stringify(s).replaceAll('"/assets/', `"${SITE.url}/assets/`)}</script>`).join('\n')}
 </head>
 <body class="page-${meta.slug}" data-page="${meta.slug}">
 <div class="loader" data-loader aria-hidden="true">
@@ -208,14 +210,26 @@ async function build() {
     await fs.writeFile(path.join(DIST, 'assets/img', file), svg);
   }
 
-  const pages = (await fs.readdir(path.join(SRC, 'pages'))).filter((f) => f.endsWith('.html'));
+  const files = (await fs.readdir(path.join(SRC, 'pages'))).filter((f) => f.endsWith('.html'));
+  const pages = [];
+  for (const file of files) pages.push(parsePage(await fs.readFile(path.join(SRC, 'pages', file), 'utf8'), file));
+  CASE_STUDIES.forEach((p, i) => pages.push(caseStudyPage(p, CASE_STUDIES[(i + 1) % CASE_STUDIES.length])));
+
+  const tokens = {
+    '{{EMAIL}}': SITE.email,
+    '{{PORTFOLIO_FILTERS}}': portfolioFilters(PORTFOLIO),
+    '{{PORTFOLIO_GRID}}': PORTFOLIO.map(workCard).join('\n'),
+    '{{CASE_GRID}}': CASE_STUDIES.map(caseCard).join('\n'),
+    '{{WORK_COUNT}}': String(PORTFOLIO.length),
+  };
   const routes = [];
-  for (const file of pages) {
-    const raw = await fs.readFile(path.join(SRC, 'pages', file), 'utf8');
-    const { meta, body } = parsePage(raw, file);
+  for (const { meta, body } of pages) {
     const route = meta.route;
-    let html = layout({ meta, body: body.replaceAll('{{EMAIL}}', SITE.email).replaceAll('{{PHONE}}', SITE.phone).replaceAll('{{PHONE_HREF}}', SITE.phoneHref).replaceAll('{{WHATSAPP}}', SITE.whatsapp).replaceAll('{{LOCATION}}', SITE.location), route });
+    let content = body;
+    for (const [k, v] of Object.entries(tokens)) content = content.replaceAll(k, v);
+    const html = layout({ meta, body: content, route });
     const out = route === '/' ? 'index.html' : route === '/404' ? '404.html' : route.slice(1) + '.html';
+    await fs.mkdir(path.dirname(path.join(DIST, out)), { recursive: true });
     await fs.writeFile(path.join(DIST, out), html);
     if (route !== '/404') routes.push({ route, priority: meta.priority ?? 0.8 });
   }

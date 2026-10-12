@@ -157,7 +157,7 @@
 
   /* ---------- Reveal on scroll ---------- */
   function initReveals() {
-    const targets = $$('[data-reveal], [data-split], [data-line], .gauge, .icon-draw, [data-count]');
+    const targets = $$('[data-reveal], [data-split], [data-line], .gauge, .icon-draw, [data-count], .cs-perf');
     if (!('IntersectionObserver' in window) || reduced) {
       targets.forEach((t) => { t.classList.add('is-in'); if (t.dataset.count) runCount(t, true); });
       return;
@@ -437,6 +437,45 @@
       })
     );
   }
+
+  /* ---------- Lightbox for portfolio previews ---------- */
+  const lbItems = $$('[data-lightbox]');
+  if (lbItems.length) {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox';
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = '<div class="lightbox__bar"><div><b></b><span></span></div><button class="lightbox__close" aria-label="Close preview">✕</button></div><div class="lightbox__stage"><img alt=""></div>';
+    document.body.appendChild(lb);
+    const img = $('img', lb);
+    let last;
+    const close = () => { lb.classList.remove('is-open'); document.body.style.overflow = ''; last?.focus(); };
+    lbItems.forEach((a) => a.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      last = a;
+      img.src = a.getAttribute('href');
+      img.alt = a.dataset.title + ' website preview';
+      $('b', lb).textContent = a.dataset.title;
+      $('span', lb).textContent = a.dataset.meta;
+      lb.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      $('.lightbox__close', lb).focus();
+    }, true));
+    $('.lightbox__close', lb).addEventListener('click', close);
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && lb.classList.contains('is-open')) close(); });
+  }
+
+  /* ---------- Full-page preview scroller ---------- */
+  $$('[data-scroller]').forEach((el) => {
+    const img = $('img', el);
+    el.tabIndex = 0;
+    const set = () => el.style.setProperty('--dist', `${Math.min(0, el.clientHeight - img.offsetHeight)}px`);
+    img.complete ? set() : img.addEventListener('load', set);
+    addEventListener('resize', set);
+  });
 
   /* ---------- Slider ---------- */
   $$('[data-slider]').forEach((sl) => {
