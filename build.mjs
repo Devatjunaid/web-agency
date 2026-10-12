@@ -152,6 +152,7 @@ function layout({ meta, body, route }) {
 <link rel="canonical" href="${url}">
 <meta name="robots" content="${meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">
 <meta name="theme-color" content="#07070A">
+${SITE.googleVerification ? `<meta name="google-site-verification" content="${SITE.googleVerification}" />` : ''}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${SITE.name}">
 <meta property="og:title" content="${esc(title)}">

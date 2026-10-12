@@ -40,7 +40,7 @@ You need Node 18 or newer. There is nothing to install.
 
 ## Before going live: checklist
 
-1. **`site.config.mjs`**: set your real `url` (your domain) and social links. The contact email is `elonopo@gmail.com`.
+1. **`site.config.mjs`**: set your real `url` (your domain) and social links. The contact email is `info@thefastdesigns.co.uk`.
 2. **Forms**: get a free access key at <https://web3forms.com> (enter the email that should receive leads) and paste it into `formAccessKey`. Until you do, the forms open the visitor's email app instead.
 3. **Sample content**: the portfolio projects and case studies are **concept work** designed to show the studio's range. The testimonials, client names and statistics (150+ projects, 98%, etc.) are **placeholders**. Replace them with your real work, real client quotes and real numbers before you launch. Publishing made-up reviews or results can mislead customers and breach advertising rules.
 4. Rebuild with `npm run build`.

@@ -2,10 +2,12 @@
 export const SITE = {
   name: 'The Fast Designs',
   // Your live domain, without a trailing slash (used for canonical URLs, sitemap and social previews)
-  url: 'https://thefastdesigns.com',
+  url: 'https://thefastdesigns.co.uk',
   description:
     'The Fast Designs is a web design and development agency building fast, conversion-focused websites, e-commerce stores and web apps for ambitious brands.',
-  email: 'elonopo@gmail.com',
+  email: 'info@thefastdesigns.co.uk',
+  // Google Search Console verification token
+  googleVerification: 'PwwiNPYiMLmf-QM_YXijuHWzfHe2py7Ks2bHjtLT-00',
   // Free key from https://web3forms.com (enter the email that should receive leads). Forms email you on submit.
   formAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
   social: [
