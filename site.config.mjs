@@ -9,7 +9,7 @@ export const SITE = {
   // Google Search Console verification token
   googleVerification: 'PwwiNPYiMLmf-QM_YXijuHWzfHe2py7Ks2bHjtLT-00',
   // Free key from https://web3forms.com (enter the email that should receive leads). Forms email you on submit.
-  formAccessKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
+  formAccessKey: '7e817db1-58a2-44c6-8c96-599fc5a23d68',
   social: [
     { label: 'LinkedIn', short: 'Li', href: 'https://www.linkedin.com/company/thefastdesigns' },
     { label: 'Instagram', short: 'Ig', href: 'https://www.instagram.com/thefastdesigns' },
