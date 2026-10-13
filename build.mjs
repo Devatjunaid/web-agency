@@ -44,7 +44,7 @@ function header(current) {
 <div class="progress" aria-hidden="true"><span></span></div>
 <header class="header" data-header>
   <div class="container header__inner">
-    <a href="/" class="logo" aria-label="${SITE.name} — home">${logo('h')}<span class="logo__text">The Fast<b>Designs</b></span></a>
+    <a href="/" class="logo">${logo('h')}<span class="logo__text">The Fast<b>Designs</b></span></a>
     <nav class="nav" aria-label="Primary">
       <ul class="nav__list">${links}</ul>
     </nav>
@@ -72,7 +72,7 @@ function footer() {
     </div>
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="/" class="logo" aria-label="${SITE.name} — home">${logo('f')}<span class="logo__text">The Fast<b>Designs</b></span></a>
+        <a href="/" class="logo">${logo('f')}<span class="logo__text">The Fast<b>Designs</b></span></a>
         <p>${SITE.name} is a web design and development agency building high‑performance websites, e‑commerce stores and web apps for ambitious brands worldwide.</p>
       </div>
       <div>
@@ -102,7 +102,7 @@ function footer() {
     <div class="footer__bottom">
       <p>© ${year} ${SITE.name}. All rights reserved.</p>
       <ul class="social">
-        ${SITE.social.map((s) => `<li><a href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}">${s.short}</a></li>`).join('')}
+        ${SITE.social.map((s) => `<li><a href="${s.href}" target="_blank" rel="noopener"><span aria-hidden="true">${s.short}</span><span class="sr-only">${s.label}</span></a></li>`).join('')}
       </ul>
       <button class="totop" data-totop aria-label="Back to top">↑ Top</button>
     </div>
@@ -167,21 +167,13 @@ ${SITE.googleVerification ? `<meta name="google-site-verification" content="${SI
 <meta name="twitter:image" content="${og}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/main.css?v=${BUILD}">
+<link rel="preload" href="/assets/fonts/syne-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>${CSS}</style>
 ${meta.extraHead || ''}
 ${schemas.map((s) => `<script type="application/ld+json">${JSON.stringify(s).replaceAll('"/assets/', `"${SITE.url}/assets/`)}</script>`).join('\n')}
 </head>
 <body class="page-${meta.slug}" data-page="${meta.slug}">
-<div class="loader" data-loader aria-hidden="true">
-  <div class="loader__inner">
-    <div class="loader__lines"><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="loader__word">The Fast Designs</div>
-    <div class="loader__count" data-loader-count>00</div>
-  </div>
-</div>
 <div class="transition" data-transition aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 <div class="cursor" aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"><span class="cursor__label"></span></div></div>
 <div class="noise" aria-hidden="true"></div>
@@ -198,10 +190,13 @@ ${footer()}
 }
 
 const BUILD = Date.now().toString(36);
+let CSS = '';
+const minifyCss = (css) => css.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\s+/g, ' ').replace(/\s*([{}:;,>])\s*/g, '$1').replace(/;}/g, '}').trim();
 
 async function build() {
   await fs.rm(DIST, { recursive: true, force: true });
   await copyDir(PUBLIC, DIST);
+  CSS = minifyCss(await fs.readFile(path.join(PUBLIC, 'assets/css/main.css'), 'utf8'));
 
   // Generated artwork (portfolio mockups, charts, OG source)
   const art = renderArt();

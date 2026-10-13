@@ -1,14 +1,27 @@
 // Case-study page + portfolio card templates (used by build.mjs)
+import { readFileSync } from 'node:fs';
 import { CATS } from './portfolio.mjs';
 
+// Read pixel height of a lossy/extended WebP so <img> gets correct dimensions (avoids layout shift)
+function webpHeight(file, fallback) {
+  try {
+    const b = readFileSync(new URL(`../public/assets/img/work/${file}`, import.meta.url));
+    const chunk = b.toString('ascii', 12, 16);
+    if (chunk === 'VP8 ') return b.readUInt16LE(28) & 0x3fff;
+    if (chunk === 'VP8X') return 1 + b.readUIntLE(27, 3);
+  } catch {}
+  return fallback;
+}
+
+const shot = (slug, sizes = '(max-width: 860px) 100vw, 50vw') => `src="/assets/img/work/${slug}-1440.webp" srcset="/assets/img/work/${slug}-720.webp 720w, /assets/img/work/${slug}-1440.webp 1440w" sizes="${sizes}"`;
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
 export function workCard(p, i) {
-  const href = p.caseStudy ? `/work/${p.slug}` : `/assets/img/work/${p.slug}.jpg`;
+  const href = p.caseStudy ? `/work/${p.slug}` : `/assets/img/work/${p.slug}-1440.webp`;
   const attrs = p.caseStudy ? `data-cursor="Case study"` : `data-lightbox data-title="${esc(p.name)}" data-meta="${esc(p.type)} · ${esc(p.stack)} · ${p.year}" data-cursor="Preview"`;
   return `<a href="${href}" class="work" data-cat="${p.cat}" data-reveal ${attrs}>
-  <div class="work__media"><img src="/assets/img/work/${p.slug}.jpg" alt="${esc(p.name)} — ${esc(p.type)} designed and developed by The Fast Designs" width="1440" height="900" loading="${i < 4 ? 'eager' : 'lazy'}"></div>
-  <div class="work__info"><div><h3>${esc(p.name)}</h3><p>${esc(p.type)} · ${esc(p.industry)}</p></div><span class="work__year">${p.caseStudy ? '<b class="work__badge">Case study</b>' : p.year}</span></div>
+  <div class="work__media"><img ${shot(p.slug)} alt="${esc(p.name)} — ${esc(p.type)} designed and developed by The Fast Designs" width="1440" height="900" loading="${i < 2 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}></div>
+  <div class="work__info"><div><h2>${esc(p.name)}</h2><p>${esc(p.type)} · ${esc(p.industry)}</p></div><span class="work__year">${p.caseStudy ? '<b class="work__badge">Case study</b>' : p.year}</span></div>
 </a>`;
 }
 
@@ -21,7 +34,7 @@ export function portfolioFilters(list) {
 export function caseCard(p) {
   const c = p.caseStudy;
   return `<a href="/work/${p.slug}" class="ccase" data-reveal data-cursor="Read">
-  <div class="ccase__media"><img src="/assets/img/work/${p.slug}.jpg" alt="${esc(p.name)} website" width="1440" height="900" loading="lazy"></div>
+  <div class="ccase__media"><img ${shot(p.slug, '(max-width: 900px) 100vw, 55vw')} alt="${esc(p.name)} website" width="1440" height="900" loading="lazy"></div>
   <div class="ccase__body"><p class="ccase__tag">${esc(p.industry)} · ${esc(c.services.slice(0, 2).join(', '))}</p><h2>${esc(p.name)}</h2><p>${esc(c.title)}</p>
   <div class="ccase__kpis">${c.kpis.slice(0, 2).map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div><span class="link-arrow"><span>Read case study</span></span></div>
 </a>`;
@@ -30,13 +43,13 @@ export function caseCard(p) {
 export function caseStudyPage(p, next) {
   const c = p.caseStudy;
   const fam = (f) => encodeURIComponent(f);
-  const fontLink = `<link href="https://fonts.googleapis.com/css2?family=${fam(c.type[0])}:wght@400;500;600;700&family=${fam(c.type[1])}:wght@400;500&display=swap" rel="stylesheet">`;
+  const fontLink = `<link href="https://fonts.googleapis.com/css2?family=${fam(c.type[0])}:wght@400;500;600;700&family=${fam(c.type[1])}:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">`;
   const meta = {
     route: `/work/${p.slug}`, slug: 'case', crumb: p.name, parent: ['Case Studies', '/case-studies'], priority: 0.7,
     title: `${p.name} Case Study — ${p.type} | The Fast Designs`,
     description: `${c.summary.split('. ')[0]}. See the process, design system and results.`.slice(0, 158),
     extraHead: fontLink,
-    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: c.title, about: p.name, image: `/assets/img/work/${p.slug}.jpg`, author: { '@type': 'Organization', name: 'The Fast Designs' } }],
+    schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: c.title, about: p.name, image: `/assets/img/work/${p.slug}-1440.webp`, author: { '@type': 'Organization', name: 'The Fast Designs' } }],
   };
   const body = `
 <section class="phero cs-hero">
@@ -60,7 +73,7 @@ export function caseStudyPage(p, next) {
 </section>
 
 <section class="cs-shot container" data-reveal="scale">
-  <div class="screen"><img src="/assets/img/work/${p.slug}.jpg" alt="${esc(p.name)} homepage designed by The Fast Designs" width="1440" height="900"></div>
+  <div class="screen"><img ${shot(p.slug, '(max-width: 1300px) 100vw, 1240px')} alt="${esc(p.name)} homepage designed by The Fast Designs" width="1440" height="900" fetchpriority="high"></div>
 </section>
 
 <section class="section--tight">
@@ -118,8 +131,8 @@ export function caseStudyPage(p, next) {
     <h2 class="h-md" data-split style="margin-bottom:16px">The finished website</h2>
     <p class="muted" data-reveal style="margin-bottom:40px">Hover over (or scroll) the page to see the full homepage.</p>
     <div class="cs-screens">
-      <div class="scroller" data-scroller data-reveal data-cursor="Scroll"><img src="/assets/img/work/${p.slug}-full.jpg" alt="Full ${esc(p.name)} homepage design" width="1440" loading="lazy"></div>
-      <div class="cs-phones" data-stagger=".12">${[1, 2, 3].map((i) => `<div class="phone"><img src="/assets/img/work/${p.slug}-m${i}.jpg" alt="${esc(p.name)} mobile screen ${i}" width="390" height="844" loading="lazy"></div>`).join('')}</div>
+      <div class="scroller" data-scroller data-reveal data-cursor="Scroll"><img src="/assets/img/work/${p.slug}-full.webp" alt="Full ${esc(p.name)} homepage design" width="1440" height="${webpHeight(`${p.slug}-full.webp`, 3000)}" loading="lazy"></div>
+      <div class="cs-phones" data-stagger=".12">${[1, 2, 3].map((i) => `<div class="phone"><img src="/assets/img/work/${p.slug}-m${i}.webp" alt="${esc(p.name)} mobile screen ${i}" width="480" height="1039" loading="lazy"></div>`).join('')}</div>
     </div>
   </div>
 </section>
@@ -154,7 +167,7 @@ export function caseStudyPage(p, next) {
   <div class="container">
     <a href="/work/${next.slug}" class="cs-next" data-reveal data-cursor="Next">
       <div><p class="eyebrow">Next case study</p><h2 class="h-lg">${esc(next.name)}</h2><p class="muted">${esc(next.caseStudy.title)}</p></div>
-      <div class="cs-next__img"><img src="/assets/img/work/${next.slug}.jpg" alt="${esc(next.name)} website" width="1440" height="900" loading="lazy"></div>
+      <div class="cs-next__img"><img ${shot(next.slug)} alt="${esc(next.name)} website" width="1440" height="900" loading="lazy"></div>
     </a>
   </div>
 </section>

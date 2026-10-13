@@ -1,11 +1,15 @@
 {
-  // Cloudflare Workers static-assets deployment.
+  // Cloudflare Workers deployment.
   // Build command: npm run build   ·   Deploy command: npx wrangler deploy
   "name": "the-fast-designs",
+  "main": "src/worker.js",
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    // Run the worker first so the non-www → www and http → https redirects apply to every URL
+    "run_worker_first": true
   }
 }

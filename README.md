@@ -66,5 +66,5 @@ npx wrangler deploy
 ## Editing content
 
 - **Text:** edit the matching file in `src/pages/`. The JSON block at the top of each file controls its SEO title and description.
-- **Portfolio:** add or edit entries in `src/portfolio.mjs` (layout family `saas | shop | editorial | local | listing | app | tech | bold`, colours, fonts and copy). Then run `node tools/shots/render.mjs <slug>` to re-screenshot it (needs Playwright: `npm i -D playwright && npx playwright install chromium`), then `npm run build`. Add a `caseStudy` block to give a project its own case-study page.
+- **Portfolio:** add or edit entries in `src/portfolio.mjs` (layout family `saas | shop | editorial | local | listing | app | tech | bold`, colours, fonts and copy). Then run `node tools/shots/render.mjs <slug>` followed by `python3 tools/shots/optimize.py` (converts to responsive WebP) to re-screenshot it (needs Playwright: `npm i -D playwright && npx playwright install chromium`), then `npm run build`. Add a `caseStudy` block to give a project its own case-study page.
 - **Colours and fonts:** edit the CSS variables at the top of `public/assets/css/main.css`.

@@ -17,11 +17,9 @@
     del(k) { try { sessionStorage.removeItem(k); } catch {} },
   };
 
-  /* ---------- Loader + page-enter transition ---------- */
-  const loader = $('[data-loader]');
+  /* ---------- Page-enter transition ---------- */
   const transition = $('[data-transition]');
   const cameFromNav = store.get('tfd-nav') === '1';
-  const seenLoader = store.get('tfd-loaded') === '1';
   store.del('tfd-nav');
 
   function start() {
@@ -29,32 +27,11 @@
     initReveals();
     initHeroRotator();
   }
-
-  if (reduced || seenLoader || cameFromNav) {
-    loader?.classList.add('is-skip');
-    if (cameFromNav && !reduced) {
-      transition.classList.add('is-entering');
-      setTimeout(() => transition.classList.remove('is-entering'), 1100);
-      setTimeout(start, 250);
-    } else start();
-  } else {
-    store.set('tfd-loaded', '1');
-    const count = $('[data-loader-count]');
-    const t0 = performance.now();
-    const dur = 1500;
-    const tick = (now) => {
-      const p = clamp((now - t0) / dur, 0, 1);
-      const e = 1 - Math.pow(1 - p, 3);
-      count.textContent = String(Math.round(e * 100)).padStart(2, '0');
-      if (p < 1) requestAnimationFrame(tick);
-      else {
-        loader.classList.add('is-done');
-        setTimeout(start, 350);
-        setTimeout(() => loader.classList.add('is-skip'), 1200);
-      }
-    };
-    requestAnimationFrame(tick);
+  if (cameFromNav && !reduced) {
+    transition.classList.add('is-entering');
+    setTimeout(() => transition.classList.remove('is-entering'), 1100);
   }
+  start();
 
   // Page-leave transition for internal links
   document.addEventListener('click', (e) => {
@@ -286,9 +263,10 @@
     let W, H, DPR, stars = [], visible = true;
     const mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
     let speed = 0.6, targetSpeed = 0.6, lastScroll = scrollY;
-    const N = innerWidth < 700 ? 260 : 600;
+    const small = innerWidth < 700;
+    const N = small ? 140 : 480;
     function resize() {
-      DPR = Math.min(devicePixelRatio || 1, 2);
+      DPR = Math.min(devicePixelRatio || 1, small ? 1.25 : 2);
       W = canvas.clientWidth; H = canvas.clientHeight;
       canvas.width = W * DPR; canvas.height = H * DPR;
       ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -305,7 +283,8 @@
     for (let i = 0; i < N; i++) stars.push(spawn());
     addEventListener('resize', resize);
     addEventListener('pointermove', (e) => { mouse.tx = e.clientX / innerWidth; mouse.ty = e.clientY / innerHeight; }, { passive: true });
-    new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible) requestAnimationFrame(frame); }).observe(canvas);
+    let started = false;
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; if (visible && started) requestAnimationFrame(frame); }).observe(canvas);
 
     function frame() {
       if (!visible) return;
@@ -339,7 +318,9 @@
     }
     ctx.fillStyle = '#07070a';
     ctx.fillRect(0, 0, W, H);
-    if (reduced) { for (let i = 0; i < 60; i++) frame(); } else requestAnimationFrame(frame);
+    const go = () => { started = true; if (reduced) { for (let i = 0; i < 60; i++) frame(); } else requestAnimationFrame(frame); };
+    const idle = window.requestIdleCallback || ((f) => setTimeout(f, 200));
+    if (document.readyState === 'complete') idle(go); else addEventListener('load', () => idle(go), { once: true });
   }
 
   /* ---------- Pointer effects (desktop only) ---------- */
