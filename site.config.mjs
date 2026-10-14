@@ -2,7 +2,7 @@
 export const SITE = {
   name: 'The Fast Designs',
   // Your live domain, without a trailing slash (used for canonical URLs, sitemap and social previews)
-  url: 'https://www.thefastdesigns.co.uk',
+  url: 'https://thefastdesigns.co.uk',
   description:
     'The Fast Designs is a web design and development agency building fast, conversion-focused websites, e-commerce stores and web apps for ambitious brands.',
   email: 'info@thefastdesigns.co.uk',

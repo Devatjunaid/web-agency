@@ -5,8 +5,7 @@
   "compatibility_date": "2026-09-01",
   // Attach the live domain on every deploy (Cloudflare creates the DNS records + SSL automatically)
   "routes": [
-    { "pattern": "thefastdesigns.co.uk", "custom_domain": true },
-    { "pattern": "www.thefastdesigns.co.uk", "custom_domain": true }
+    { "pattern": "thefastdesigns.co.uk", "custom_domain": true }
   ],
   "assets": {
     "directory": "./dist",
