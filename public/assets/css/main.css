@@ -621,7 +621,7 @@ em { font-style: normal; color: var(--accent); }
 .footer__big:hover em { color: var(--text); }
 .footer__big-arrow { display: inline-grid; place-items: center; width: 0.8em; height: 0.8em; font-size: 0.6em; border-radius: 50%; background: var(--accent); color: #0a0a0a; transition: transform 0.6s var(--ease); }
 .footer__big:hover .footer__big-arrow { transform: rotate(45deg) scale(1.1); }
-.footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 40px; padding-block: 60px; }
+.footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1.1fr 1.1fr 1.1fr; gap: 40px; padding-block: 60px; }
 .footer__brand p { color: var(--muted); margin-top: 22px; max-width: 360px; font-size: 15px; }
 .footer__h { font: 600 13px/1 var(--body); letter-spacing: 0.15em; text-transform: uppercase; color: var(--dim); margin-bottom: 20px; }
 .footer__grid li { padding: 5px 0; font-size: 15px; color: #c9cad3; }
@@ -789,3 +789,35 @@ em { font-style: normal; color: var(--accent); }
 
 /* Page-header content paints immediately (better LCP); slide-in only */
 .js .phero [data-reveal]:not([data-reveal='clip']), .js .phero [data-stagger] > * { opacity: 1; transform: none; transition: none; animation: heroIn 1s var(--ease) both; animation-delay: var(--d, 0s); }
+
+/* ---------- Landing pages ---------- */
+.lp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: clamp(36px, 5vw, 60px); }
+.lp-stats div { background: var(--bg); padding: 22px 26px; }
+.lp-stats b { display: block; font: 700 clamp(28px, 3.2vw, 42px)/1 var(--display); letter-spacing: -.03em; color: var(--accent); margin-bottom: 8px; }
+.lp-stats span { color: var(--muted); font-size: 15px; }
+.lp-process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.lp-process > div { padding: 30px 26px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); }
+.lp-process__n { font: 800 44px/1 var(--display); -webkit-text-stroke: 1px rgba(255,255,255,.25); color: transparent; display: block; margin-bottom: 18px; }
+.lp-process small { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.lp-process h3 { font-size: 22px; margin: 6px 0 10px; }
+.lp-process p { color: var(--muted); font-size: 15px; margin: 0; }
+.lp-why { grid-template-columns: repeat(4, 1fr); }
+.value h3 { font: 700 21px/1.2 var(--display); margin: 18px 0 10px; }
+.industry-cloud a { color: inherit; }
+.lp-cities { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.lp-city { padding: 34px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); display: flex; flex-direction: column; gap: 10px; transition: border-color .3s, transform .5s var(--ease); }
+.lp-city:hover { border-color: var(--accent); transform: translateY(-4px); }
+.lp-city small { color: var(--accent); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+.lp-city h3 { font-size: clamp(26px, 2.6vw, 34px); }
+.lp-city p { color: var(--muted); margin: 0 0 8px; }
+.areas-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.areas-grid a { padding: 22px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--surface); transition: border-color .3s, transform .5s var(--ease); }
+.areas-grid a:hover { border-color: var(--accent); transform: translateY(-3px); }
+.areas-grid b { display: block; font: 700 19px var(--display); margin-bottom: 4px; }
+.areas-grid span { font-size: 14px; color: var(--muted); }
+@media (max-width: 1000px) { .lp-process, .lp-why { grid-template-columns: 1fr 1fr; } .areas-grid { grid-template-columns: repeat(2, 1fr); } .footer__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .lp-stats, .lp-process, .lp-why, .lp-cities { grid-template-columns: 1fr; } }
+.spec-links { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: 30px; color: var(--muted); font-size: 15px; }
+.spec-links a { color: var(--text); border-bottom: 1px solid var(--line-2); padding-bottom: 2px; transition: color .3s, border-color .3s; }
+.spec-links a:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 640px) { .pkg--hot { padding-top: 66px; } }

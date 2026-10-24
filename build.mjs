@@ -7,6 +7,7 @@ import { SITE, NAV } from './site.config.mjs';
 import { renderArt } from './src/art.mjs';
 import { PORTFOLIO, CASE_STUDIES } from './src/portfolio.mjs';
 import { workCard, portfolioFilters, caseCard, caseStudyPage } from './src/case-study.mjs';
+import { LANDING, landingPage, locationsPage } from './src/landing.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(ROOT, 'src');
@@ -73,7 +74,7 @@ function footer() {
     <div class="footer__grid">
       <div class="footer__brand">
         <a href="/" class="logo">${logo('f')}<span class="logo__text">The Fast<b>Designs</b></span></a>
-        <p>${SITE.name} is a web design and development agency building high‑performance websites, e‑commerce stores and web apps for ambitious brands worldwide.</p>
+        <p>${SITE.name} is a UK web design agency and web development company building fast, SEO‑ready websites, ecommerce stores and web apps for ambitious brands.</p>
       </div>
       <div>
         <h2 class="footer__h">Explore</h2>
@@ -82,12 +83,23 @@ function footer() {
       <div>
         <h2 class="footer__h">Services</h2>
         <ul>
-          <li><a href="/services#web-design">Website Design</a></li>
-          <li><a href="/services#web-development">Web Development</a></li>
-          <li><a href="/services#ecommerce">E‑commerce</a></li>
-          <li><a href="/services#ui-ux">UI/UX Design</a></li>
-          <li><a href="/services#seo">SEO &amp; Performance</a></li>
-          <li><a href="/services#care">Care &amp; Growth</a></li>
+          <li><a href="/services">Web Design Services</a></li>
+          <li><a href="/web-development">Web Development</a></li>
+          <li><a href="/ecommerce-web-design">Ecommerce Web Design</a></li>
+          <li><a href="/shopify-web-design">Shopify Web Design</a></li>
+          <li><a href="/wordpress-web-design">WordPress Web Design</a></li>
+          <li><a href="/website-redesign">Website Redesign</a></li>
+          <li><a href="/affordable-web-design">Affordable Web Design</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="footer__h">Locations</h2>
+        <ul>
+          <li><a href="/web-design-london">Web Design London</a></li>
+          <li><a href="/web-design-manchester">Web Design Manchester</a></li>
+          <li><a href="/web-design-birmingham">Web Design Birmingham</a></li>
+          <li><a href="/web-design-suffolk">Web Design Suffolk</a></li>
+          <li><a href="/locations">Web Design Near Me</a></li>
         </ul>
       </div>
       <div>
@@ -136,14 +148,15 @@ function layout({ meta, body, route }) {
     image: og,
     email: SITE.email,
     description: SITE.description,
-    areaServed: 'Worldwide',
+    areaServed: [{ '@type': 'Country', name: 'United Kingdom' }, ...['London', 'Manchester', 'Birmingham'].map((name) => ({ '@type': 'City', name })), { '@type': 'AdministrativeArea', name: 'Suffolk' }],
+    priceRange: '££',
     sameAs: SITE.social.map((s) => s.href),
-    knowsAbout: ['Web Design', 'Web Development', 'E-commerce Development', 'UI/UX Design', 'Search Engine Optimization', 'Core Web Vitals'],
+    knowsAbout: ['Web Design', 'Web Development', 'Ecommerce Web Design', 'Shopify Web Development', 'WordPress Web Design', 'Website Redesign', 'Search Engine Optimization', 'Core Web Vitals'],
   };
   const schemas = [org, breadcrumbs, ...(meta.schema || [])].filter(Boolean);
 
   return `<!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -161,6 +174,8 @@ ${SITE.googleVerification ? `<meta name="google-site-verification" content="${SI
 <meta property="og:image" content="${og}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Fast Designs — UK web design agency building fast websites that sell">
+<meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(meta.description)}">
@@ -210,6 +225,12 @@ async function build() {
   const pages = [];
   for (const file of files) pages.push(parsePage(await fs.readFile(path.join(SRC, 'pages', file), 'utf8'), file));
   CASE_STUDIES.forEach((p, i) => pages.push(caseStudyPage(p, CASE_STUDIES[(i + 1) % CASE_STUDIES.length])));
+  LANDING.forEach((d) => pages.push(landingPage(d, SITE)));
+  pages.push(locationsPage(SITE));
+  for (const { meta } of pages) {
+    if (meta.title.length > 65) console.warn(`⚠ Long title (${meta.title.length}) ${meta.route}`);
+    if (meta.description.length > 165 || meta.description.length < 110) console.warn(`⚠ Description length ${meta.description.length} ${meta.route}`);
+  }
 
   const tokens = {
     '{{EMAIL}}': SITE.email,

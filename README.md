@@ -3,7 +3,11 @@
 A fast, dark, animation-rich website for **The Fast Designs**, a web design and development agency.
 It is plain HTML, CSS and JavaScript with **no frameworks and no dependencies**, built for Cloudflare.
 
-**Pages:** Home · Services · Portfolio · Case Studies · Testimonials · Contact · Get a Quote · 404
+**Pages:** Home · Services · Portfolio · Case Studies (4) · Testimonials · Contact · Get a Quote · 404
+
+**SEO landing pages** (`src/landing.mjs`): Web Design London · Manchester · Birmingham · Suffolk · Locations (web design near me) · Web Development · Ecommerce Web Design · Shopify Web Design · WordPress Web Design · Website Redesign · Affordable Web Design.
+
+Prices shown on the site (from £995 / £1,495 / £3,995 / £5,995…) live in `src/landing.mjs`, `src/pages/services.html` and the homepage FAQ — edit them there.
 
 ## Features
 
