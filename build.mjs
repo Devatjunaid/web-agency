@@ -106,7 +106,7 @@ function footer() {
         <h2 class="footer__h">Contact</h2>
         <ul>
           <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
-          <li><a href="/get-a-quote">Request a quote</a></li>
+          <li><a href="/get-a-quote">Web design quick quote</a></li>
           <li><a href="/contact">Send a message</a></li>
         </ul>
       </div>
