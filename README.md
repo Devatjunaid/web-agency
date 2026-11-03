@@ -7,7 +7,7 @@ It is plain HTML, CSS and JavaScript with **no frameworks and no dependencies**,
 
 **SEO landing pages** (`src/landing.mjs`): Web Design London · Manchester · Birmingham · Suffolk · Locations (web design near me) · Web Development · Ecommerce Web Design · Shopify Web Design · WordPress Web Design · Website Redesign · Affordable Web Design.
 
-Prices shown on the site (from £100 / £250 / £500 affordable packages, £1,495 / £3,995 / £5,995…) live in `src/landing.mjs`, `src/pages/services.html` and the homepage FAQ — edit them there.
+Prices shown on the site (budget ladder: websites £100 / £250 / £500, stores from £350, web apps from £1,500…) live in `src/landing.mjs`, `src/pages/services.html` and the homepage FAQ — edit them there.
 
 ## Features
 

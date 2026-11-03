@@ -65,7 +65,7 @@ export const LANDING = [
       ['Measured by results', 'Analytics, conversion tracking and Search Console are set up before launch so you can see the return.'],
     ],
     faqs: [
-      ['How much does web design cost in London?', 'Most small business websites with us start from £1,495, growth websites from £3,995 and e-commerce or custom builds from £5,995. Every project gets a fixed, itemised quote before work starts.'],
+      ['How much does web design cost in London?', 'Websites start from just £100 for a one-page site, £250 for a small business website and £500 for a larger custom website. Online stores start from £350. Every project gets a fixed, itemised quote before work starts.'],
       ['Are you a London-based web design agency?', 'We are a UK web design agency that works with London businesses every week. Projects run over video calls, shared design files and live preview links, which keeps our pricing well below typical central-London agency rates.'],
       ['Do you also offer web development in London?', 'Yes. As a full-service web development agency, London clients come to us for custom web applications, integrations, Shopify development and WordPress builds, not just design.'],
       ['How long does a website take?', 'Most marketing websites launch in four to eight weeks. E-commerce stores and custom platforms typically take eight to fourteen weeks.'],
@@ -106,7 +106,7 @@ export const LANDING = [
       ['Support after launch', 'Optional care plans cover hosting, updates and monthly improvements.'],
     ],
     faqs: [
-      ['How much does a website cost in Manchester?', 'Small business websites start from £1,495, larger marketing sites from £3,995 and online stores from £5,995. You receive a fixed price before any work begins.'],
+      ['How much does a website cost in Manchester?', 'Websites start from £100, small business websites from £250, larger marketing sites from £500 and online stores from £350. You receive a fixed price before any work begins.'],
       ['Do you meet Manchester clients in person?', 'Our projects run remotely over video calls, shared design files and live preview links. It keeps the process fast and the price lower, and our Manchester clients get the same senior attention as any local studio.'],
       ['Can you redesign my existing website?', 'Yes. We audit your current site, keep what works, map every URL and set up redirects so you keep your Google rankings.'],
       ['Do you write the website content?', 'We can. Our SEO copywriting is written around the searches your Manchester customers actually use.'],
@@ -147,7 +147,7 @@ export const LANDING = [
       ['Real support', 'You can always reach the people who built your website.'],
     ],
     faqs: [
-      ['How much is a new website in Birmingham?', 'Websites for small businesses start from £1,495. Larger sites with more pages and integrations start from £3,995, and online shops from £5,995.'],
+      ['How much is a new website in Birmingham?', 'Websites for small businesses start from £250, or £100 for a one-page site. Larger sites with more pages start from £500, and online shops from £350.'],
       ['Will my new website work well on mobile?', 'Yes. Every site is designed mobile-first and tested on real phones and tablets before launch.'],
       ['Can you help with Google rankings?', 'SEO foundations are built into every project, and we offer ongoing local SEO for businesses that want to grow further.'],
       ['Do you work with businesses outside Birmingham?', 'Yes — we work with companies right across the West Midlands and the whole of the UK.'],
@@ -161,7 +161,7 @@ export const LANDING = [
     eyebrow: 'Web design Suffolk',
     h1: 'Web design Suffolk <em>businesses can rely on.</em>',
     lead: 'Professional, affordable websites for Suffolk businesses — from Ipswich and Bury St Edmunds to the coast. Designed to look great, load fast and help local customers find you on Google.',
-    stats: [['From £1,495', 'small business websites'], ['4–6 wks', 'typical launch time'], ['95+', 'speed scores']],
+    stats: [['From £100', 'affordable websites'], ['4–6 wks', 'typical launch time'], ['95+', 'speed scores']],
     introTitle: 'Websites that help Suffolk customers find you',
     intro: [
       'Whether you run a holiday let in Southwold, a trade business in Ipswich, a shop in Bury St Edmunds or a growing B2B company near Felixstowe, most of your customers will meet you online first. Our web design Suffolk service makes sure that first impression is a good one.',
@@ -182,13 +182,13 @@ export const LANDING = [
     areas: { title: 'Web design near you across Suffolk', text: 'We work with businesses in every corner of the county.', list: ['Ipswich', 'Bury St Edmunds', 'Lowestoft', 'Felixstowe', 'Sudbury', 'Woodbridge', 'Newmarket', 'Stowmarket', 'Haverhill', 'Aldeburgh', 'Southwold', 'Framlingham'] },
     whyTitle: 'Why Suffolk businesses choose The Fast Designs',
     why: [
-      ['Affordable, fixed pricing', 'Small business websites from £1,495 with no hidden extras.'],
+      ['Affordable, fixed pricing', 'Websites from £100 and small business websites from £250, with no hidden extras.'],
       ['Easy to update', 'Change text, photos and opening hours yourself in minutes.'],
       ['Found on Google', 'Local SEO and fast loading are built in from day one.'],
       ['Friendly support', 'Clear advice in plain English, before and after launch.'],
     ],
     faqs: [
-      ['How much does a website cost in Suffolk?', 'Our small business websites start from £1,495, growth websites from £3,995 and online shops from £5,995 — all with fixed, itemised quotes.'],
+      ['How much does a website cost in Suffolk?', 'Our websites start from £100, small business websites from £250, larger websites from £500 and online shops from £350 — all with fixed, itemised quotes.'],
       ['Can I update the website myself?', 'Yes. We build on easy-to-use content management systems and record a short walkthrough video for your team.'],
       ['Do you help with Google Business Profile?', 'Yes. We set up or optimise your profile and connect it to your new website to improve local visibility.'],
       ['How long until my website is live?', 'Most Suffolk small business websites launch in four to six weeks.'],
@@ -230,9 +230,9 @@ export const LANDING = [
       ['You own everything', 'Full access to your code repository, hosting and accounts from day one.'],
     ],
     pricing: { title: 'Web development pricing', text: 'Every project is quoted at a fixed price. These are typical starting points.', pkgs: [
-      ['Marketing website', 'Fast, SEO-ready sites with a headless CMS.', 'From £3,995', ['Custom design & development', 'Headless CMS', 'On-page SEO & schema', 'Analytics & tracking'], false],
-      ['Web application', 'Portals, dashboards and internal tools.', 'From £9,995', ['Discovery & specification', 'Secure authentication', 'API integrations', 'Automated testing'], true],
-      ['Retained development', 'An extension of your team every month.', 'From £1,200/mo', ['Monthly development hours', 'Priority support', 'Performance monitoring', 'Roadmap planning'], false],
+      ['Marketing website', 'Fast, SEO-ready sites with a headless CMS.', 'From £500', ['Custom design & development', 'Headless CMS', 'On-page SEO & schema', 'Analytics & tracking'], false],
+      ['Web application', 'Portals, dashboards and internal tools.', 'From £1,500', ['Discovery & specification', 'Secure authentication', 'API integrations', 'Automated testing'], true],
+      ['Retained development', 'An extension of your team every month.', 'From £250/mo', ['Monthly development hours', 'Priority support', 'Performance monitoring', 'Roadmap planning'], false],
     ] },
     faqs: [
       ['What does a web development agency do?', 'A web development agency plans, builds and maintains websites and web applications — writing the code, integrating systems, hosting and keeping everything secure and fast.'],
@@ -275,12 +275,12 @@ export const LANDING = [
       ['Launch with confidence', 'Full QA, test orders and a launch checklist that covers every payment and shipping rule.'],
     ],
     pricing: { title: 'Ecommerce web design pricing', text: 'Fixed-price packages for online stores of every size.', pkgs: [
-      ['Starter store', 'Launch your first online shop.', 'From £3,495', ['Up to 50 products', 'Premium theme customisation', 'Payments & shipping set-up', 'Basic SEO'], false],
-      ['Growth store', 'A custom store built to convert.', 'From £5,995', ['Custom design & theme', 'Unlimited products', 'Email & reviews integrations', 'Conversion-focused UX'], true],
-      ['Headless / Plus', 'For high-volume brands.', 'From £14,995', ['Headless storefront', 'ERP & inventory integrations', 'Multi-currency & markets', 'Performance engineering'], false],
+      ['Starter store', 'Launch your first online shop.', 'From £350', ['Up to 50 products', 'Premium theme customisation', 'Payments & shipping set-up', 'Basic SEO'], false],
+      ['Growth store', 'A custom store built to convert.', 'From £750', ['Custom design & theme', 'Unlimited products', 'Email & reviews integrations', 'Conversion-focused UX'], true],
+      ['Headless / Plus', 'For high-volume brands.', 'From £1,500', ['Headless storefront', 'ERP & inventory integrations', 'Multi-currency & markets', 'Performance engineering'], false],
     ] },
     faqs: [
-      ['How much does ecommerce web design cost?', 'Starter stores begin at £3,495, custom-designed stores at £5,995 and headless or Shopify Plus builds at £14,995. You will receive a fixed quote before we begin.'],
+      ['How much does ecommerce web design cost?', 'Starter stores begin at just £350, custom-designed stores at £750 and headless or Shopify Plus builds at £1,500. You will receive a fixed quote before we begin.'],
       ['Shopify or WooCommerce — which is better?', 'Shopify suits most brands thanks to its reliability and app ecosystem. WooCommerce is a good fit if you already run WordPress or need full control. We will recommend the best option for you.'],
       ['Can you migrate my existing online store?', 'Yes. We migrate products, customers, orders and URLs, and set up redirects so you keep your search rankings.'],
       ['Do you offer ecommerce web development for custom features?', 'Yes — subscriptions, product configurators, B2B pricing, bundles and custom checkout logic are all part of our ecommerce web development service.'],
@@ -320,12 +320,12 @@ export const LANDING = [
       ['Long-term partner', 'Monthly Shopify support and growth retainers available.'],
     ],
     pricing: { title: 'Shopify web design pricing', text: 'Fixed prices for Shopify projects.', pkgs: [
-      ['Theme customisation', 'Refine a premium theme for your brand.', 'From £2,495', ['Theme set-up & styling', 'Homepage & product templates', 'Apps & payments', 'Training video'], false],
-      ['Custom Shopify store', 'A bespoke design and theme.', 'From £5,995', ['Custom design', 'Custom OS 2.0 theme', 'Integrations', 'SEO & speed optimisation'], true],
-      ['Shopify Plus', 'For high-growth brands.', 'From £12,995', ['Checkout extensions', 'Markets & B2B', 'Hydrogen headless option', 'Dedicated developer'], false],
+      ['Theme customisation', 'Refine a premium theme for your brand.', 'From £300', ['Theme set-up & styling', 'Homepage & product templates', 'Apps & payments', 'Training video'], false],
+      ['Custom Shopify store', 'A bespoke design and theme.', 'From £750', ['Custom design', 'Custom OS 2.0 theme', 'Integrations', 'SEO & speed optimisation'], true],
+      ['Shopify Plus', 'For high-growth brands.', 'From £1,500', ['Checkout extensions', 'Markets & B2B', 'Hydrogen headless option', 'Dedicated developer'], false],
     ] },
     faqs: [
-      ['How much does Shopify web design cost?', 'Theme customisations start at £2,495, custom Shopify stores at £5,995 and Shopify Plus projects at £12,995.'],
+      ['How much does Shopify web design cost?', 'Theme customisations start at £300, custom Shopify stores at £750 and Shopify Plus projects at £1,500.'],
       ['Do you build custom Shopify themes?', 'Yes. Our Shopify web development team builds custom Online Store 2.0 themes so you can edit every section without code.'],
       ['Can you move my store to Shopify?', 'Yes, including products, customers, order history and URL redirects to protect your SEO.'],
       ['Do you work with Shopify Plus?', 'Yes — checkout extensibility, Shopify Markets, B2B and Hydrogen headless builds.'],
@@ -366,7 +366,7 @@ export const LANDING = [
     ],
     faqs: [
       ['Do you offer a WordPress website redesign service?', 'Yes. We redesign existing WordPress websites, migrate content, rebuild the theme for speed and set up redirects so you keep your rankings.'],
-      ['How much does a WordPress website cost?', 'WordPress websites start from £1,495 for small businesses and £3,995 for larger custom builds. WooCommerce stores start from £3,495.'],
+      ['How much does a WordPress website cost?', 'WordPress websites start from £250 for small businesses and £500 for larger custom builds. WooCommerce stores start from £350.'],
       ['Will I be able to edit the website myself?', 'Yes. We build with the WordPress block editor and custom fields, and include a recorded training session.'],
       ['Can you look after hosting and updates?', 'Yes. Our WordPress care plans include managed hosting, updates, backups, uptime and security monitoring.'],
     ],
@@ -405,13 +405,13 @@ export const LANDING = [
       ['Post-launch monitoring', 'We watch rankings, errors and conversions after go-live.'],
     ],
     pricing: { title: 'Website redesign pricing', text: 'Fixed-price redesign packages.', pkgs: [
-      ['Small business redesign', 'Refresh a 5–10 page website.', 'From £1,495', ['New design', 'Mobile-first rebuild', 'SEO-safe redirects', 'Speed optimisation'], false],
-      ['Custom redesign', 'A full redesign and rebuild.', 'From £3,995', ['Discovery & analytics audit', 'Custom design system', 'CMS migration', 'Conversion improvements'], true],
-      ['Platform redesign', 'Complex sites & stores.', 'From £7,995', ['Large-scale URL mapping', 'Integrations', 'E-commerce migration', 'Post-launch monitoring'], false],
+      ['Small business redesign', 'Refresh a 5–10 page website.', 'From £250', ['New design', 'Mobile-first rebuild', 'SEO-safe redirects', 'Speed optimisation'], false],
+      ['Custom redesign', 'A full redesign and rebuild.', 'From £500', ['Discovery & analytics audit', 'Custom design system', 'CMS migration', 'Conversion improvements'], true],
+      ['Platform redesign', 'Complex sites & stores.', 'From £1,000', ['Large-scale URL mapping', 'Integrations', 'E-commerce migration', 'Post-launch monitoring'], false],
     ] },
     faqs: [
       ['Will a website redesign affect my Google rankings?', 'Not if it is done properly. We map every URL, set up 301 redirects, keep metadata and monitor Search Console after launch so your rankings are protected.'],
-      ['Do you offer a website redesign service for small businesses?', 'Yes. Our small business website redesign starts from £1,495 and includes a new mobile-first design, SEO-safe redirects and speed optimisation.'],
+      ['Do you offer a website redesign service for small businesses?', 'Yes. Our small business website redesign starts from £250 and includes a new mobile-first design, SEO-safe redirects and speed optimisation.'],
       ['Can you redesign a WordPress website?', 'Yes. Our WordPress website redesign service rebuilds your site as a lightweight custom theme while keeping your content.'],
       ['How long does a website redesign take?', 'Most redesigns take four to eight weeks depending on the number of pages and integrations.'],
     ],
