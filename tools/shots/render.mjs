@@ -23,7 +23,7 @@ async function fontHref(fonts) {
       if (res?.ok) { parts.push(`family=${f}${axis}`); break; }
     }
   }
-  return `https://fonts.googleapis.com/css2?${parts.join('&')}&display=block`;
+  return `https://fonts.googleapis.com/css2?${parts.join('&')}&display=swap`;
 }
 
 const only = process.argv.slice(2);

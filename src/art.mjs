@@ -87,12 +87,5 @@ const LOGO = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs>
 const lum = (hex) => { const n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255; };
 
 export function renderArt() {
-  const out = { 'logo.svg': LOGO };
-  for (const p of CASE_STUDIES) {
-    const t = p.theme;
-    const a = lum(t.accent) < 0.35 ? t.alt : t.accent;
-    const b = t.alt && t.alt !== a && lum(t.alt) > 0.35 ? t.alt : a;
-    out[`work/${p.slug}-results.svg`] = resultChart({ id: p.slug, name: p.name, type: p.type, bg: '#0B0C12', bg2: '#161823', a, b, chart: { ...p.caseStudy.chart, title: `${p.name} — before vs. after launch` } });
-  }
-  return out;
+  return { 'logo.svg': LOGO };
 }

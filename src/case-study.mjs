@@ -18,17 +18,17 @@ const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').
 
 // Descriptive, keyword-aware alt text for portfolio screenshots
 export function altFor(p) {
-  if (p.cat === 'ecommerce') return `${p.name} ${p.type.toLowerCase()} — ecommerce web design and development by The Fast Designs`;
-  if (p.cat === 'saas') return `${p.name} ${p.type.toLowerCase()} — custom web development by The Fast Designs`;
-  return `${p.name} ${p.type.toLowerCase()} — web design by The Fast Designs, UK web design agency`;
+  if (p.cat === 'ecommerce') return `${p.name} ${p.type.toLowerCase()} — ecommerce web design concept by The Fast Designs`;
+  if (p.cat === 'saas') return `${p.name} ${p.type.toLowerCase()} — custom web development concept by The Fast Designs`;
+  return `${p.name} ${p.type.toLowerCase()} — web design concept by The Fast Designs, UK web design agency`;
 }
 
 export function workCard(p, i, { h = 'h2' } = {}) {
   const href = p.caseStudy ? `/work/${p.slug}` : `/assets/img/work/${p.slug}-1440.webp`;
-  const attrs = p.caseStudy ? `data-cursor="Case study"` : `data-lightbox data-title="${esc(p.name)}" data-meta="${esc(p.type)} · ${esc(p.stack)} · ${p.year}" data-cursor="Preview"`;
+  const attrs = p.caseStudy ? `data-cursor="View concept"` : `data-lightbox data-title="${esc(p.name)}" data-meta="Design concept · ${esc(p.type)} · ${esc(p.town)}" data-cursor="Preview"`;
   return `<a href="${href}" class="work" data-cat="${p.cat}" data-reveal ${attrs}>
   <div class="work__media"><img ${shot(p.slug)} alt="${esc(altFor(p))}" width="1440" height="900" loading="${i < 2 ? 'eager' : 'lazy'}"${i === 0 ? ' fetchpriority="high"' : ''}></div>
-  <div class="work__info"><div><${h}>${esc(p.name)}</${h}><p>${esc(p.type)} · ${esc(p.industry)}</p></div><span class="work__year">${p.caseStudy ? '<b class="work__badge">Case study</b>' : p.year}</span></div>
+  <div class="work__info"><div><${h}>${esc(p.name)}</${h}><p>${esc(p.type)} · ${esc(p.town)}</p></div><span class="work__year">${p.caseStudy ? '<b class="work__badge">Concept study</b>' : 'Concept'}</span></div>
 </a>`;
 }
 
@@ -43,15 +43,22 @@ export function caseCard(p) {
   return `<a href="/work/${p.slug}" class="ccase" data-reveal data-cursor="Read">
   <div class="ccase__media"><img ${shot(p.slug, '(max-width: 900px) 100vw, 55vw')} alt="${esc(p.name)} website" width="1440" height="900" loading="lazy"></div>
   <div class="ccase__body"><p class="ccase__tag">${esc(p.industry)} · ${esc(c.services.slice(0, 2).join(', '))}</p><h2>${esc(p.name)}</h2><p>${esc(c.title)}</p>
-  <div class="ccase__kpis">${c.kpis.slice(0, 2).map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div><span class="link-arrow"><span>Read case study</span></span></div>
+  <div class="ccase__kpis">${c.kpis.slice(0, 2).map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div><span class="link-arrow"><span>Read concept study</span></span></div>
 </a>`;
 }
 
 const CS_SEO = {
-  'nimbus-pay': ['Nimbus Pay: Web Development Case Study | The Fast Designs', 'How our web development agency rebuilt Nimbus Pay’s website and dashboard in Next.js — +112% sign-ups, 0.8s load time and a scalable design system.'],
-  'maison-lune': ['Maison Lune: Shopify Web Design Case Study | The Fast Designs', 'Ecommerce web design and Shopify web development for luxury fashion brand Maison Lune: +68% conversion, +114% mobile revenue and 1.6s page loads.'],
-  voltline: ['Voltline: Website Redesign Case Study | The Fast Designs', 'A website redesign service that grew organic traffic 2.8× for EV charging network Voltline, with Astro, Sanity and 46 city pages ranking on page one.'],
-  'ember-oak': ['Ember & Oak: Restaurant Web Design Case Study | The Fast Designs', 'Restaurant web design and Webflow development for Ember & Oak: integrated reservations, +212% online bookings and the #1 spot in the local map pack.'],
+  'harbour-lights': ['Restaurant Web Design Concept: Harbour Lights | The Fast Designs', 'Restaurant web design concept for a harbourside seafood restaurant: a mouth-watering menu, one-tap table booking and local SEO for “restaurant near me”.'],
+  'brightsmile-dental': ['Dental Website Design Concept: Brightsmile | The Fast Designs', 'Dental website design concept for a family practice: calm, reassuring design, clear NHS and private fees, and 24/7 online appointment booking.'],
+  'summit-roofing': ['Roofing Website Design Concept: Summit Roofing | The Fast Designs', 'Roofing company website concept built to turn local searches into free survey bookings, with click-to-call, trust signals and local area pages.'],
+  'oakwood-estates': ['Estate Agent Website Design Concept: Oakwood | The Fast Designs', 'Estate agent website design concept: property search in the hero, beautiful listings, area guides and a simple path for sellers to book a valuation.'],
+};
+// Lighthouse (mobile) scores measured on each concept build
+const LIGHTHOUSE = {
+  'harbour-lights': [['Performance', 87], ['Accessibility', 93], ['Best practices', 96], ['SEO', 100]],
+  'brightsmile-dental': [['Performance', 93], ['Accessibility', 92], ['Best practices', 96], ['SEO', 100]],
+  'summit-roofing': [['Performance', 99], ['Accessibility', 92], ['Best practices', 96], ['SEO', 100]],
+  'oakwood-estates': [['Performance', 88], ['Accessibility', 98], ['Best practices', 96], ['SEO', 100]],
 };
 
 export function caseStudyPage(p, next) {
@@ -60,7 +67,7 @@ export function caseStudyPage(p, next) {
   const fontLink = `<link href="https://fonts.googleapis.com/css2?family=${fam(c.type[0])}:wght@400;500;600;700&family=${fam(c.type[1])}:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">`;
   const meta = {
     route: `/work/${p.slug}`, slug: 'case', crumb: p.name, parent: ['Case Studies', '/case-studies'], priority: 0.7,
-    title: CS_SEO[p.slug]?.[0] || `${p.name} Case Study — ${p.type} | The Fast Designs`,
+    title: CS_SEO[p.slug]?.[0] || `${p.name} Design Concept — ${p.type} | The Fast Designs`,
     description: CS_SEO[p.slug]?.[1] || `${c.summary.split('. ')[0]}.`.slice(0, 158),
     extraHead: fontLink,
     schema: [{ '@context': 'https://schema.org', '@type': 'Article', headline: c.title, about: p.name, image: `/assets/img/work/${p.slug}-1440.webp`, author: { '@type': 'Organization', name: 'The Fast Designs' } }],
@@ -70,7 +77,7 @@ export function caseStudyPage(p, next) {
   <div class="phero__bg"><div class="grid-bg"></div></div>
   <div class="container">
     <ol class="crumbs" data-reveal><li><a href="/">Home</a></li><li><a href="/case-studies">Case Studies</a></li><li aria-current="page">${esc(p.name)}</li></ol>
-    <p class="eyebrow" data-reveal>Case study · ${esc(p.industry)}</p>
+    <p class="eyebrow" data-reveal>Concept case study · ${esc(p.industry)}</p>
     <h1 class="h-lg cs-title" data-split>${esc(c.title)}</h1>
     <div class="cs-intro">
       <p class="lead" data-reveal style="--d:.3s">${esc(c.summary)}</p>
@@ -98,7 +105,7 @@ export function caseStudyPage(p, next) {
 
 <section class="section">
   <div class="container cs-two">
-    <div><p class="eyebrow" data-reveal>01 — The challenge</p><h2 class="h-md" data-split>What stood in the way</h2></div>
+    <div><p class="eyebrow" data-reveal>01 — The challenge</p><h2 class="h-md" data-split>The brief</h2></div>
     <div data-reveal>
       <p class="cs-text">${esc(c.challenge)}</p>
       <h3 class="cs-h3">Project goals</h3>
@@ -109,8 +116,8 @@ export function caseStudyPage(p, next) {
 
 <section class="section--tight">
   <div class="container">
-    <p class="eyebrow" data-reveal>02 — Discovery</p>
-    <h2 class="h-md" data-split style="margin-bottom:40px">What the research told us</h2>
+    <p class="eyebrow" data-reveal>02 — Principles</p>
+    <h2 class="h-md" data-split style="margin-bottom:40px">What the design had to get right</h2>
     <div class="cs-insights" data-stagger=".1">${c.insights.map(([n, t]) => `<div><b>${esc(n)}</b><p>${esc(t)}</p></div>`).join('')}</div>
   </div>
 </section>
@@ -153,34 +160,28 @@ export function caseStudyPage(p, next) {
 
 <section class="section--tight">
   <div class="container cs-two">
-    <div><p class="eyebrow" data-reveal>06 — Development</p><h2 class="h-md" data-split>Engineered for speed</h2>
+    <div><p class="eyebrow" data-reveal>06 — Development</p><h2 class="h-md" data-split>How it’s built</h2>
       <ul class="stack" data-stagger=".03" style="margin-top:30px">${c.tech.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div>
     <div class="cs-perf" data-reveal>
-      <div class="cs-perf__head"><span>Lighthouse (mobile)</span><span>Before</span><span>After</span></div>
-      ${c.perf.map(([n, a, b]) => `<div class="cs-perf__row"><span>${n}</span><span class="bad">${a}</span><span class="good">${b}</span><div class="cs-perf__bar"><i style="width:${a}%"></i><i style="width:${b}%"></i></div></div>`).join('')}
+      <div class="cs-perf__head cs-perf__head--single"><span>Lighthouse (mobile) · concept build</span><span>Score</span></div>
+      ${(LIGHTHOUSE[p.slug] || []).map(([n, v]) => `<div class="cs-perf__row cs-perf__row--single"><span>${n}</span><span class="good">${v}</span><div class="cs-perf__bar"><i style="width:0"></i><i style="width:${v}%"></i></div></div>`).join('')}
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <p class="eyebrow" data-reveal>07 — Results</p>
-    <h2 class="h-md" data-split style="margin-bottom:40px">The impact</h2>
-    <div class="cs-results">
-      <div class="case__chart" data-reveal="left"><img src="/assets/img/work/${p.slug}-results.svg" alt="${esc(p.name)} website redesign results before and after launch" width="1200" height="660" loading="lazy"></div>
-      <div class="case__nums" data-stagger=".1">${c.kpis.slice(0, 3).map(([v, l]) => `<div><strong>${esc(v)}</strong><span>${esc(l)}</span></div>`).join('')}</div>
-    </div>
-    <figure class="cs-quote" data-reveal>
-      <blockquote>“${esc(c.quote[0])}”</blockquote>
-      <figcaption class="who"><span class="avatar">${c.quote[1].split(' ').map((x) => x[0]).join('')}</span><div><strong>${esc(c.quote[1])}</strong><span>${esc(c.quote[2])}</span></div></figcaption>
-    </figure>
+    <p class="eyebrow" data-reveal>07 — At a glance</p>
+    <h2 class="h-md" data-split style="margin-bottom:40px">Concept specs</h2>
+    <div class="cs-kpis" data-stagger=".08">${c.kpis.map(([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('')}</div>
+    <p class="cs-note" data-reveal>${esc(c.client.replace(' (concept)', ''))} is a fictional business. This is a design concept created by The Fast Designs to show how we would approach a ${esc(p.industry.toLowerCase())} website — it is not a live client project.</p>
   </div>
 </section>
 
 <section class="section--tight">
   <div class="container">
     <a href="/work/${next.slug}" class="cs-next" data-reveal data-cursor="Next">
-      <div><p class="eyebrow">Next case study</p><h2 class="h-lg">${esc(next.name)}</h2><p class="muted">${esc(next.caseStudy.title)}</p></div>
+      <div><p class="eyebrow">Next concept</p><h2 class="h-lg">${esc(next.name)}</h2><p class="muted">${esc(next.caseStudy.title)}</p></div>
       <div class="cs-next__img"><img ${shot(next.slug)} alt="${esc(altFor(next))}" width="1440" height="900" loading="lazy"></div>
     </a>
   </div>

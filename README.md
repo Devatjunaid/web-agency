@@ -12,8 +12,8 @@ Prices shown on the site (budget ladder: websites £100 / £250 / £500, stores 
 ## Features
 
 - **Motion:** preloader, page-to-page panel transitions, a hero "warp-speed" canvas that reacts to the mouse and to scroll speed, a rotating headline, split-text reveals, scroll-scrubbed statement text, a horizontal-scroll process section, parallax, magnetic buttons, a custom cursor, 3D tilt cards, spotlight hover, text scramble, animated counters, Lighthouse-style gauges and marquees.
-- **Portfolio:** 29 projects, each one a real, responsive website built in HTML (`tools/shots/`) and captured with a headless browser, so the images are genuine website screenshots. There are no stock images or device mockups.
-- **Case studies:** 4 in-depth pages (`/work/…`) covering the challenge, research insights, approach, design system, desktop and mobile screens, Lighthouse before/after and results.
+- **Portfolio:** 26 design concepts for fictional local UK businesses (restaurant, pub, café, dentist, cleaner, roofer, plumber, electrician, estate agent, salon, gym, solicitor, bakery, garage, B&B and more). Each is a real responsive page built in HTML (`tools/shots/`) and captured with a headless browser. All are clearly labelled as concepts on the site.
+- **Concept studies:** 4 in-depth pages (`/work/…`) — brief, design principles, approach, design system, desktop + mobile screens and measured Lighthouse scores. No invented client results.
 - **SEO:** a unique title and meta description per page, canonical URLs, Open Graph and Twitter cards, JSON-LD schema (ProfessionalService, BreadcrumbList, Service list, FAQPage), an auto-generated `sitemap.xml` and `robots.txt`, semantic HTML and descriptive alt text.
 - **Accessibility:** keyboard-friendly, skip link, focus styles, ARIA labels. Respects `prefers-reduced-motion`, which turns animations off.
 - **Forms:** a contact form and a 4-step quote form, both with validation. They send email through Web3Forms (free).
@@ -46,7 +46,7 @@ You need Node 18 or newer. There is nothing to install.
 
 1. **`site.config.mjs`**: set your real `url` (your domain) and social links. The contact email is `info@thefastdesigns.co.uk`.
 2. **Forms**: get a free access key at <https://web3forms.com> (enter the email that should receive leads) and paste it into `formAccessKey`. Until you do, the forms open the visitor's email app instead.
-3. **Sample content**: the portfolio projects and case studies are **concept work** designed to show the studio's range. The testimonials, client names and statistics (150+ projects, 98%, etc.) are **placeholders**. Replace them with your real work, real client quotes and real numbers before you launch. Publishing made-up reviews or results can mislead customers and breach advertising rules.
+3. **Portfolio content**: the businesses in the portfolio are fictional design concepts and are labelled as such. Replace or add real client projects (with permission) as you complete them, and add genuine client reviews to the Reviews page.
 4. Rebuild with `npm run build`.
 
 ## Deploy to Cloudflare

@@ -38,7 +38,7 @@ export const LANDING = [
     eyebrow: 'Web design agency London',
     h1: 'Web design London <em>businesses grow with.</em>',
     lead: 'The Fast Designs is a London web design agency for companies that want more than a pretty homepage. We design, build and optimise fast, search-friendly websites that win enquiries in one of the most competitive markets in the world.',
-    stats: [['<1s', 'average load time'], ['95+', 'Lighthouse scores at launch'], ['4–8 wks', 'typical project timeline']],
+    stats: [['From £100', 'websites'], ['48h', 'quote turnaround'], ['4–8 wks', 'typical project timeline']],
     introTitle: 'A London web design agency without the London overheads',
     intro: [
       'London buyers compare you with a dozen competitors before they ever pick up the phone. Your website has seconds to prove you are the safer, smarter choice — and it has to do that on a phone, on the Tube, on a patchy 4G connection. That is exactly the problem our web design London team solves.',
@@ -55,7 +55,7 @@ export const LANDING = [
     ],
     workTitle: 'Recent web design and development projects',
     workText: 'A selection of websites, e-commerce stores and platforms our team has designed and built.',
-    work: ['nimbus-pay', 'maison-lune', 'harbor-vale', 'vantage-capital'],
+    work: ['harbour-lights', 'oakwood-estates', 'hartley-cole', 'bloom-hair'],
     areas: { title: 'Web design near you, anywhere in London', text: 'From the City to the suburbs, we work with businesses across all 32 boroughs. Whether you are in Zone 1 or the outskirts, you get the same senior team, the same fixed price and the same fast turnaround.', list: ['Shoreditch', 'Canary Wharf', 'The City', 'Soho', 'Camden', 'Islington', 'Hackney', 'Kensington', 'Clapham', 'Richmond', 'Croydon', 'Stratford', 'Wimbledon', 'King’s Cross'] },
     whyTitle: 'Why London businesses choose The Fast Designs',
     why: [
@@ -79,7 +79,7 @@ export const LANDING = [
     eyebrow: 'Web design company Manchester',
     h1: 'Web design Manchester, <em>built to perform.</em>',
     lead: 'The Fast Designs is the web design company Manchester businesses hire when they want a website that pulls its weight — quick to load, easy to find on Google and designed to turn visitors into customers.',
-    stats: [['2.4×', 'average conversion lift'], ['98', 'average speed score'], ['48h', 'proposal turnaround']],
+    stats: [['From £100', 'websites'], ['Mobile-first', 'every build'], ['48h', 'proposal turnaround']],
     introTitle: 'A web design company Manchester can rely on',
     intro: [
       'Manchester moves quickly. From the tech scale-ups of the Northern Quarter to the creative studios at MediaCityUK and the professional firms in Spinningfields, the city rewards businesses that look sharp and act fast online. Our web design Manchester service is built for exactly that pace.',
@@ -96,7 +96,7 @@ export const LANDING = [
     ],
     workTitle: 'Websites our team has designed and built',
     workText: 'Projects across hospitality, healthcare, construction and retail.',
-    work: ['ember-oak', 'peak-physio', 'forge-construction', 'brewline'],
+    work: ['ledger-co', 'fox-and-hound', 'precision-autos', 'sparkle-shine'],
     areas: { title: 'Web design near you across Greater Manchester', text: 'We work with businesses right across the city region — from the city centre to the surrounding towns.', list: ['Northern Quarter', 'Spinningfields', 'Ancoats', 'MediaCityUK', 'Salford', 'Didsbury', 'Chorlton', 'Altrincham', 'Stockport', 'Trafford', 'Bolton', 'Oldham'] },
     whyTitle: 'Why Manchester businesses work with us',
     why: [
@@ -120,7 +120,7 @@ export const LANDING = [
     eyebrow: 'Web design Birmingham',
     h1: 'Web design Birmingham <em>businesses are proud of.</em>',
     lead: 'From the Jewellery Quarter to Solihull, The Fast Designs helps Birmingham businesses replace tired websites with fast, modern ones that rank higher and bring in better enquiries.',
-    stats: [['+212%', 'online bookings (Ember & Oak)'], ['<1s', 'typical load time'], ['100%', 'rankings kept on redesigns']],
+    stats: [['From £250', 'small business websites'], ['SEO-ready', 'from day one'], ['48h', 'free quote']],
     introTitle: 'Websites designed for the way Birmingham buys',
     intro: [
       'Birmingham is home to thousands of ambitious independent businesses — manufacturers, trades, clinics, restaurants and professional services firms competing for the same local searches. Our web design Birmingham service gives you a website that makes the decision easy: clear services, real proof and a simple way to get in touch.',
@@ -137,7 +137,7 @@ export const LANDING = [
     ],
     workTitle: 'Recent projects from our web design team',
     workText: 'Websites for trades, clinics, hospitality and retail.',
-    work: ['forge-construction', 'lumen-dental', 'ember-oak', 'greenroot'],
+    work: ['swiftmove-removals', 'ashby-building', 'brightsmile-dental', 'crumb-and-crust'],
     areas: { title: 'Web design near you in the West Midlands', text: 'We work with businesses throughout Birmingham and the surrounding towns.', list: ['City Centre', 'Jewellery Quarter', 'Digbeth', 'Brindleyplace', 'Colmore Business District', 'Edgbaston', 'Harborne', 'Moseley', 'Solihull', 'Sutton Coldfield', 'Wolverhampton', 'Coventry'] },
     whyTitle: 'Why Birmingham businesses choose our team',
     why: [
@@ -161,7 +161,7 @@ export const LANDING = [
     eyebrow: 'Web design Suffolk',
     h1: 'Web design Suffolk <em>businesses can rely on.</em>',
     lead: 'Professional, affordable websites for Suffolk businesses — from Ipswich and Bury St Edmunds to the coast. Designed to look great, load fast and help local customers find you on Google.',
-    stats: [['From £100', 'affordable websites'], ['4–6 wks', 'typical launch time'], ['95+', 'speed scores']],
+    stats: [['From £100', 'affordable websites'], ['4–6 wks', 'typical launch time'], ['Free', 'quick quote']],
     introTitle: 'Websites that help Suffolk customers find you',
     intro: [
       'Whether you run a holiday let in Southwold, a trade business in Ipswich, a shop in Bury St Edmunds or a growing B2B company near Felixstowe, most of your customers will meet you online first. Our web design Suffolk service makes sure that first impression is a good one.',
@@ -178,7 +178,7 @@ export const LANDING = [
     ],
     workTitle: 'Examples of our website design work',
     workText: 'Hospitality, retail and local service websites.',
-    work: ['driftwood-hotel', 'petal-stem', 'peak-physio', 'brewline'],
+    work: ['willow-barn', 'hillside-farm-shop', 'cove-cottages', 'copper-kettle'],
     areas: { title: 'Web design near you across Suffolk', text: 'We work with businesses in every corner of the county.', list: ['Ipswich', 'Bury St Edmunds', 'Lowestoft', 'Felixstowe', 'Sudbury', 'Woodbridge', 'Newmarket', 'Stowmarket', 'Haverhill', 'Aldeburgh', 'Southwold', 'Framlingham'] },
     whyTitle: 'Why Suffolk businesses choose The Fast Designs',
     why: [
@@ -204,7 +204,7 @@ export const LANDING = [
     eyebrow: 'Web development agency UK',
     h1: 'The web development agency for <em>products that scale.</em>',
     lead: 'The Fast Designs is a web development agency UK businesses hire to build fast, secure, maintainable websites and web applications — from marketing sites to customer portals, dashboards and integrations.',
-    stats: [['0.8s', 'LCP on Nimbus Pay'], ['99.99%', 'uptime on edge hosting'], ['100%', 'code you own']],
+    stats: [['100%', 'code you own'], ['From £500', 'marketing websites'], ['From £1,500', 'web applications']],
     introTitle: 'Custom web development services, built properly',
     intro: [
       'Off-the-shelf themes and page builders are fine until they are not — until the site slows down, the plugins clash, or you need a feature nobody has built. Our custom web development services give you clean, documented code designed around your business, not the other way round.',
@@ -221,7 +221,7 @@ export const LANDING = [
     ],
     workTitle: 'Web development projects',
     workText: 'Platforms, dashboards and high-traffic websites developed by our team.',
-    work: ['nimbus-pay', 'cobalt-cloud', 'orbit-hr', 'voltline'],
+    work: ['ledger-co', 'oakwood-estates', 'pawfect-grooming', 'clutch-driving'],
     whyTitle: 'Why choose our web development company',
     why: [
       ['Senior engineers', 'Experienced developers who write tested, documented, maintainable code.'],
@@ -249,7 +249,7 @@ export const LANDING = [
     eyebrow: 'Ecommerce web design agency',
     h1: 'Ecommerce web design <em>that sells around the clock.</em>',
     lead: 'We are an ecommerce web design agency helping UK brands launch and grow online stores that load fast, look premium and turn browsers into repeat customers.',
-    stats: [['+68%', 'conversion (Maison Lune)'], ['+114%', 'mobile revenue'], ['1.6s', 'mobile page load']],
+    stats: [['From £350', 'online stores'], ['Shopify', '& WooCommerce'], ['Mobile-first', 'checkouts']],
     introTitle: 'Ecommerce web design and development under one roof',
     intro: [
       'A great online store is equal parts design and engineering. Shoppers need beautiful product pages, clear sizing and delivery information, and a checkout that takes seconds. Behind the scenes you need inventory, payments, shipping rules and email flows that simply work. Our ecommerce web design team handles both.',
@@ -266,7 +266,7 @@ export const LANDING = [
     ],
     workTitle: 'Ecommerce websites we have designed',
     workText: 'Fashion, food, beauty and lifestyle stores.',
-    work: ['maison-lune', 'greenroot', 'sola-skincare', 'arc-furniture'],
+    work: ['crumb-and-crust', 'hillside-farm-shop', 'petal-stem', 'bloom-hair'],
     whyTitle: 'Why brands choose our ecommerce web design agency',
     why: [
       ['Revenue-focused design', 'Every layout decision is tied to conversion, basket size or repeat purchase.'],
@@ -294,7 +294,7 @@ export const LANDING = [
     eyebrow: 'Shopify web design',
     h1: 'Shopify web design <em>for ambitious brands.</em>',
     lead: 'Custom Shopify web design and Shopify web development for brands that have outgrown templates. We build fast, flexible stores your team can run without a developer on call.',
-    stats: [['+31%', 'average order value'], ['96', 'mobile speed score'], ['2.0', 'Online Store 2.0 themes']],
+    stats: [['From £300', 'Shopify set-up'], ['OS 2.0', 'custom themes'], ['Fixed', 'prices']],
     introTitle: 'Shopify stores designed around your customers',
     intro: [
       'Shopify gives you the most reliable e-commerce engine on the market — but most stores look and feel the same. Our Shopify web design service gives your brand a storefront that stands out, tells your story and answers every buying question before the customer has to ask.',
@@ -311,7 +311,7 @@ export const LANDING = [
     ],
     workTitle: 'Shopify stores we have designed and developed',
     workText: 'Fashion, footwear, flowers and furniture brands.',
-    work: ['maison-lune', 'stride', 'petal-stem', 'brewline'],
+    work: ['crumb-and-crust', 'petal-stem', 'hillside-farm-shop', 'copper-kettle'],
     whyTitle: 'Why brands pick us for Shopify',
     why: [
       ['Design that converts', 'Premium, on-brand stores designed around conversion data.'],
@@ -339,7 +339,7 @@ export const LANDING = [
     eyebrow: 'WordPress web design agency',
     h1: 'The WordPress web design agency for <em>fast, secure sites.</em>',
     lead: 'We design and build custom WordPress websites that load quickly, stay secure and are a pleasure to edit — no bloated page builders, no plugin chaos.',
-    stats: [['97', 'avg. speed score'], ['<15', 'plugins per site'], ['24/7', 'security monitoring']],
+    stats: [['From £250', 'WordPress websites'], ['Lean', 'custom themes'], ['SEO', 'built in']],
     introTitle: 'WordPress, done the right way',
     intro: [
       'WordPress powers over 40% of the web because it is flexible and easy to use. But many WordPress sites end up slow, insecure and fragile under the weight of heavy themes and dozens of plugins. As a specialist WordPress web design agency, we build lean custom themes that keep the editing experience simple and the site fast.',
@@ -356,7 +356,7 @@ export const LANDING = [
     ],
     workTitle: 'WordPress websites by our team',
     workText: 'Professional services, healthcare, construction and retail.',
-    work: ['harbor-vale', 'lumen-dental', 'forge-construction', 'greenroot'],
+    work: ['brightsmile-dental', 'summit-roofing', 'hartley-cole', 'flowfix-plumbing'],
     whyTitle: 'Why choose our WordPress web design agency',
     why: [
       ['No page-builder bloat', 'Custom themes built with native blocks for speed and stability.'],
@@ -379,7 +379,7 @@ export const LANDING = [
     eyebrow: 'Website redesign service UK',
     h1: 'Website redesign service <em>without losing your rankings.</em>',
     lead: 'Our website redesign service turns slow, outdated websites into fast, modern ones that convert — while protecting the Google rankings and traffic you have already earned.',
-    stats: [['100%', 'rankings preserved'], ['2.8×', 'organic traffic (Voltline)'], ['4–8 wks', 'typical redesign']],
+    stats: [['From £250', 'small business redesigns'], ['301', 'redirects mapped'], ['4–8 wks', 'typical redesign']],
     introTitle: 'A website redesign service agency you can trust with your traffic',
     intro: [
       'A redesign is the riskiest project most businesses ever run on their website. Change too much without a plan and you can lose years of search rankings overnight. Change too little and nothing improves. As a website redesign service agency, we start by measuring what already works — your top pages, keywords, backlinks and conversion paths — and protect it.',
@@ -396,7 +396,7 @@ export const LANDING = [
     ],
     workTitle: 'Website redesign results',
     workText: 'Redesigns that improved speed, rankings and enquiries.',
-    work: ['voltline', 'ember-oak', 'nimbus-pay', 'harbor-vale'],
+    work: ['summit-roofing', 'harbour-lights', 'voltworks-electrical', 'greenedge-landscapes'],
     whyTitle: 'Why businesses choose our website redesign service',
     why: [
       ['Rankings protected', 'A documented SEO migration plan for every redesign.'],
@@ -441,7 +441,7 @@ export const LANDING = [
     ],
     workTitle: 'Affordable web designs for real businesses',
     workText: 'Examples of the clean, practical websites we design for clinics, shops and local service businesses.',
-    work: ['peak-physio', 'lumen-dental', 'petal-stem', 'forge-construction'],
+    work: ['sparkle-shine', 'peak-physio', 'precision-autos', 'copper-kettle'],
     whyTitle: 'Why choose our low cost web design company?',
     why: [
       ['Honest, fixed prices', 'Starter, Standard and Premium packages from £100 — you know the full price before we begin.'],
@@ -531,6 +531,7 @@ export function landingPage(d, SITE) {
   <div class="container">
     <div class="shead"><div><p class="eyebrow" data-reveal>Our work</p><h2 class="h-lg" data-split>${esc(d.workTitle)}</h2><p data-reveal>${esc(d.workText)}</p></div><a href="/portfolio" class="btn btn--ghost" data-magnetic data-reveal><span>View full portfolio</span><i class="btn__arrow" aria-hidden="true">→</i></a></div>
     <div class="work-grid work-grid--stagger">${work.map((p, i) => workCard(p, i + 2, { h: 'h3', context: d.crumb })).join('')}</div>
+    <p class="cs-note" data-reveal>These are design concepts for fictional businesses, created by our team to show the kind of websites we build.</p>
   </div>
 </section>
 

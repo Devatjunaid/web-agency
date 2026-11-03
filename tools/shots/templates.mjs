@@ -1,6 +1,6 @@
 // Full-page HTML templates for the portfolio sites. Each project in src/portfolio.mjs
 // is rendered to a real, responsive web page and screenshotted by render.mjs.
-import { scene, interior, product, plate, building, orbs, molecule, map, avatar, spark, rng } from './visuals.mjs';
+import { scene, interior, product, plate, building, orbs, molecule, map, avatar, spark, rng, van } from './visuals.mjs';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
 const ICONS = {
@@ -22,6 +22,7 @@ export function visual(v, p) {
   switch (v.kind) {
     case 'scene': return scene(v.scene || 'mountains', v.time || 'dusk', p.slug + (v.seed || ''), { tint: v.tint });
     case 'interior': return interior(v.colors || {}, p.slug + (v.seed || ''));
+    case 'van': return van(v.colors || {}, p.slug + (v.seed || ''));
     case 'plate': return plate(p.slug + (v.seed || ''), v.colors || {});
     case 'building': return building(p.slug + (v.seed || ''), v.colors || {});
     case 'orbs': return orbs(v.colors || [t.accent, t.alt || t.accent, t.fg], p.slug + (v.seed || ''));
@@ -107,6 +108,7 @@ function header(p, { icons = false, over = false } = {}) {
 }
 
 function logos(p) {
+  if (p.logos === false) return '';
   const names = p.logos || ['Northwind', 'Lumen', 'Kinetic', 'Arcadia', 'Polaris', 'Ferro'];
   const fonts = ['Georgia,serif', 'system-ui', '"Courier New",monospace', 'Impact,sans-serif', 'system-ui', 'Georgia,serif'];
   return `<section class="logos"><div class="wrap"><p>${esc(p.logosLabel || 'Trusted by fast-moving teams')}</p><div class="logos__row">${names.map((n, i) => `<span style="font-family:${fonts[i % 6]};${i % 2 ? 'font-weight:800;letter-spacing:-.02em' : 'letter-spacing:.06em;text-transform:uppercase;font-size:15px'}">${esc(n)}</span>`).join('')}</div></div></section>`;
@@ -170,7 +172,7 @@ ${split(p)}${stats(p)}${quote(p)}${footer(p)}`;
   local(p) {
     const h = p.hero;
     return `<div class="topbar"><div class="wrap topbar__in"><span>${icon('clock', 14)} ${esc(p.hours)}</span><span>${icon('map', 14)} ${esc(p.address)}</span><a>${esc(p.topCta || 'Book online')} →</a></div></div>${header(p)}
-<section class="hero hero--split hero--local"><div class="wrap">
+<section class="hero hero--split hero--local ${h.flip ? 'hero--flip' : ''}"><div class="wrap">
   <div class="hero__copy"><span class="pill2">${icon('check', 14)} ${esc(h.eyebrow)}</span><h1>${title(h)}</h1><p class="lead">${esc(h.sub)}</p><ul class="checks checks--row">${(h.points || []).map((x) => `<li>${icon('check', 16)}${esc(x)}</li>`).join('')}</ul>${btns(h)}<div class="reviews"><div class="avs">${['JM', 'AK', 'SR', 'LT'].map((x, i) => avatar(x, ['#F9D9C4', '#CDE7F0', '#E2D9F3', '#D9F0D3'][i], ['#F2B48F', '#9CCFE0', '#C5B4E8', '#ACD9A2'][i], 36)).join('')}</div><div>${stars()} <b>4.9</b><small>${esc(h.reviews || 'from 1,200+ Google reviews')}</small></div></div></div>
   <div class="hero__media hero__media--tall">${visual(h.visual, p)}<div class="float float--appt"><span class="float__ic">${icon('cal', 18)}</span><div><small>Next available</small><b>${esc(h.next || 'Tomorrow · 9:30 AM')}</b></div></div></div>
 </div></section>
@@ -219,8 +221,8 @@ export function renderPage(p) {
   const t = p.theme;
   const fonts = [...new Set([p.fonts.head, p.fonts.body])].map((f) => `family=${encodeURIComponent(f)}:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500`).join('&');
   const dark = t.dark;
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(p.name)}</title>
-<link href="https://fonts.googleapis.com/css2?${fonts}&display=block" rel="stylesheet">
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(p.name)} — ${esc(p.town || '')}</title><meta name="description" content="${esc(p.hero.sub)}"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?${fonts}&display=swap" rel="stylesheet">
 <style>
 :root{--bg:${t.bg};--fg:${t.fg};--muted:${t.muted};--acc:${t.accent};--ink:${t.accentInk};--sf:${t.surface};--line:${t.line};--alt:${t.alt || t.accent};--fh:'${p.fonts.head}',system-ui,sans-serif;--fb:'${p.fonts.body}',system-ui,sans-serif;--r:${p.radius ?? 14}px;--hw:${p.headWeight || 700};--ht:${p.headTrack || '-0.03em'};--sec:${t.section || t.surface}}
 *{box-sizing:border-box}html,body{margin:0}body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--fb);-webkit-font-smoothing:antialiased}
@@ -313,6 +315,7 @@ h1{font-size:${p.h1 || 68}px}h2{font-size:42px}h3{font-size:20px}em{font-style:$
 .ticker{position:relative;z-index:2;background:var(--acc);color:var(--ink);font:700 22px var(--fh);padding:16px 0;white-space:nowrap;overflow:hidden;text-transform:uppercase}.ticker i{font-style:normal;margin:0 16px}
 .lineup__row{display:grid;grid-template-columns:120px 1fr auto auto;gap:30px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}.lineup__row b{font:var(--hw) 40px/1 var(--fh);letter-spacing:var(--ht);text-transform:uppercase}.lineup__row span{color:var(--acc);font-weight:600}.lineup__row small{color:var(--muted)}
 @media (min-width:761px){.hero--split .dash{grid-template-columns:150px 1fr}.hero--split .dash__search{display:none}.hero--split .dash__kpis{grid-template-columns:repeat(2,1fr)}.hero--split .dash__row{grid-template-columns:1fr}.hero--split .dash__li:nth-child(n+5){display:none}.hero--split .dash__mi{padding:8px}.hero--split .dash__chart svg{height:120px}}
+@media (min-width:761px){.hero--flip .hero__media{order:-1}}
 ${p.css || ''}
 @media (max-width:760px){
  .wrap{padding:0 20px}.links,.actions .btn,.login,.topbar__in span:nth-child(2){display:none}.burger{display:block}.actions{gap:14px}

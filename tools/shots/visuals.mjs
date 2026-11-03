@@ -190,6 +190,12 @@ export function product(kind, color = '#E8C9B0', { bg = 'none', label = '' } = {
     case 'bike':
       body = `${shadow(200, 330, 170)}<circle cx="100" cy="270" r="62" fill="none" stroke="#222" stroke-width="10"/><circle cx="300" cy="270" r="62" fill="none" stroke="#222" stroke-width="10"/><path d="M100 270 L170 170 L270 170 L300 270 M170 170 L200 270 L270 170 M200 270 L100 270" stroke="${color}" stroke-width="12" fill="none" stroke-linejoin="round"/><path d="M160 150 h40 M262 150 l10 20" stroke="#222" stroke-width="10" stroke-linecap="round"/>`;
       break;
+    case 'loaf':
+      body = `${shadow(200, 330, 150)}<path d="M70 300 C60 220 110 170 200 170 C290 170 340 220 330 300 Z" fill="url(#${hl})"/><path d="M70 300 h260 v10 c0 8 -6 12 -14 12 h-232 c-8 0 -14 -4 -14 -12z" fill="${dark}"/>${[0, 1, 2, 3].map((i) => `<path d="M${130 + i * 45} ${200 + (i % 2) * 6} q18 -14 36 0" stroke="${light}" stroke-width="7" fill="none" stroke-linecap="round" opacity=".8"/>`).join('')}`;
+      break;
+    case 'cake':
+      body = `${shadow(200, 350, 140)}<ellipse cx="200" cy="330" rx="150" ry="22" fill="#EDE6DA"/><rect x="85" y="200" width="230" height="120" rx="14" fill="url(#${cyl})"/><rect x="85" y="240" width="230" height="14" fill="#fff" opacity=".7"/><path d="M85 214 q14 26 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0" fill="#fff" opacity=".9"/>${[130, 175, 220, 265].map((x) => `<circle cx="${x}" cy="196" r="12" fill="#C2243B"/>`).join('')}`;
+      break;
     case 'charger':
       body = `${shadow(200, 380, 90)}<rect x="140" y="40" width="120" height="330" rx="26" fill="url(#${cyl})"/><rect x="160" y="70" width="80" height="60" rx="10" fill="#0d1a12"/><text x="200" y="108" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="20" fill="${light}">82%</text><circle cx="200" cy="170" r="14" fill="${light}"/><path d="M260 220 C330 240 330 330 270 350" stroke="#1d1d1f" stroke-width="10" fill="none"/>`;
       break;
@@ -307,4 +313,42 @@ export function spark(seed, w, h, n = 14, up = 0.6) {
   let d = `M${pts[0][0]},${pts[0][1]}`;
   for (let i = 1; i < n; i++) { const [px, py] = pts[i - 1], [x, y] = pts[i], mx = (px + x) / 2; d += ` C${mx},${py} ${mx},${y} ${x},${y}`; }
   return { d, area: `${d} L${w},${h} L0,${h}Z`, end: pts[n - 1] };
+}
+
+/** Branded van in a street scene — trades, cleaning, removals, garages */
+export function van(c = {}, seed = 'van') {
+  const r = rng(seed);
+  const body = c.body || '#1D4ED8', ink = c.ink || '#FFFFFF', accent = c.accent || '#F5B700';
+  const sky = id('vs'), bd = id('vb'), gl = id('vg'), sh = id('vh');
+  const esc = (t) => String(t || '').replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  let houses = '';
+  for (let x = -40; x < 1240; ) {
+    const w = 150 + r() * 90, h = 180 + r() * 120, col = mix(c.house || '#C9B8A6', '#7E6A5A', r() * 0.6);
+    houses += `<rect x="${x}" y="${560 - h}" width="${w}" height="${h}" fill="${col}"/><polygon points="${x - 10},${560 - h} ${x + w / 2},${560 - h - 70} ${x + w + 10},${560 - h}" fill="${mix(col, '#2b2b2b', 0.55)}"/>`;
+    for (let wy = 560 - h + 30; wy < 520; wy += 70) for (let wx = x + 22; wx < x + w - 40; wx += 56) houses += `<rect x="${wx}" y="${wy}" width="30" height="40" fill="#E8EEF2" opacity=".85"/>`;
+    houses += `<rect x="${x + w / 2 - 18}" y="490" width="36" height="70" fill="${mix(col, '#1b1b1b', 0.6)}"/>`;
+    x += w + 16;
+  }
+  return `<svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
+<defs><linearGradient id="${sky}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.sky1 || '#BFD8EA'}"/><stop offset="1" stop-color="${c.sky2 || '#F3EDE4'}"/></linearGradient>
+<linearGradient id="${bd}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${mix(body, '#ffffff', 0.18)}"/><stop offset=".55" stop-color="${body}"/><stop offset="1" stop-color="${mix(body, '#000000', 0.3)}"/></linearGradient>
+<linearGradient id="${gl}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#26323C"/><stop offset=".5" stop-color="#8FA7B6"/><stop offset="1" stop-color="#26323C"/></linearGradient>
+<radialGradient id="${sh}"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="800" fill="url(#${sky})"/>
+${houses}
+<rect y="560" width="1200" height="40" fill="#B9B3A8"/><rect y="600" width="1200" height="200" fill="#4A4C52"/>
+${Array.from({ length: 8 }, (_, i) => `<rect x="${i * 170 - 20}" y="700" width="90" height="10" fill="#E9E4D8" opacity=".7"/>`).join('')}
+<ellipse cx="610" cy="672" rx="430" ry="26" fill="url(#${sh})"/>
+<g transform="translate(200 300)">
+  <path d="M20 340 V120 Q20 90 50 90 H560 Q600 90 630 120 L740 230 Q760 250 760 280 V340 Q760 360 740 360 H40 Q20 360 20 340Z" fill="url(#${bd})"/>
+  <path d="M580 112 L700 232 H580 Z" fill="url(#${gl})"/><rect x="590" y="125" width="6" height="105" fill="${mix(body, '#000', .3)}"/>
+  <rect x="20" y="300" width="740" height="18" fill="${accent}"/>
+  <rect x="560" y="250" width="40" height="8" rx="4" fill="${mix(body, '#000', .4)}"/>
+  <rect x="740" y="300" width="22" height="26" rx="4" fill="#FCE9A8"/>
+  <text x="60" y="180" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="${c.size || 46}" fill="${ink}">${esc(c.name)}</text>
+  <text x="62" y="225" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="${ink}" opacity=".9">${esc(c.tagline)}</text>
+  <text x="62" y="272" font-family="Arial, sans-serif" font-weight="700" font-size="24" fill="${accent}">${esc(c.web)}</text>
+  ${[150, 610].map((x) => `<circle cx="${x}" cy="360" r="62" fill="#1B1C20"/><circle cx="${x}" cy="360" r="34" fill="#9EA3AA"/><circle cx="${x}" cy="360" r="12" fill="#55585E"/>`).join('')}
+</g>
+</svg>`;
 }

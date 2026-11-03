@@ -821,3 +821,6 @@ em { font-style: normal; color: var(--accent); }
 .spec-links a { color: var(--text); border-bottom: 1px solid var(--line-2); padding-bottom: 2px; transition: color .3s, border-color .3s; }
 .spec-links a:hover { color: var(--accent); border-color: var(--accent); }
 @media (max-width: 640px) { .pkg--hot { padding-top: 66px; } }
+
+.cs-perf__head--single, .cs-perf__row--single { grid-template-columns: 1fr 70px; }
+.cs-note { margin-top: 26px; padding: 18px 22px; border-radius: var(--radius-sm); border: 1px dashed var(--line-2); color: var(--muted); font-size: 15px; }

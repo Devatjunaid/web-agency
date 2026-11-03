@@ -23,6 +23,6 @@ export const NAV = [
   { label: 'Services', href: '/services' },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Case Studies', href: '/case-studies' },
-  { label: 'Testimonials', href: '/testimonials' },
+  { label: 'Reviews', href: '/testimonials' },
   { label: 'Contact', href: '/contact' },
 ];
