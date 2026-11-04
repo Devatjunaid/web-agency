@@ -8,6 +8,8 @@ import { renderArt } from './src/art.mjs';
 import { PORTFOLIO, CASE_STUDIES } from './src/portfolio.mjs';
 import { workCard, portfolioFilters, caseCard, caseStudyPage } from './src/case-study.mjs';
 import { LANDING, landingPage, locationsPage } from './src/landing.mjs';
+import { POSTS } from './src/blog.mjs';
+import { blogIndexPage, blogPostPage } from './src/blog-page.mjs';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(ROOT, 'src');
@@ -166,7 +168,7 @@ function layout({ meta, body, route }) {
 <meta name="robots" content="${meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'}">
 <meta name="theme-color" content="#07070A">
 ${SITE.googleVerification ? `<meta name="google-site-verification" content="${SITE.googleVerification}" />` : ''}
-<meta property="og:type" content="website">
+<meta property="og:type" content="${meta.ogType || 'website'}">
 <meta property="og:site_name" content="${SITE.name}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(meta.description)}">
@@ -186,7 +188,7 @@ ${SITE.googleVerification ? `<meta name="google-site-verification" content="${SI
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>${CSS}</style>
 ${meta.extraHead || ''}
-${schemas.map((s) => `<script type="application/ld+json">${JSON.stringify(s).replaceAll('"/assets/', `"${SITE.url}/assets/`)}</script>`).join('\n')}
+${schemas.map((s) => `<script type="application/ld+json">${JSON.stringify(s).replaceAll('"/assets/', `"${SITE.url}/assets/`).replaceAll('"/blog/', `"${SITE.url}/blog/`)}</script>`).join('\n')}
 </head>
 <body class="page-${meta.slug}" data-page="${meta.slug}">
 <div class="transition" data-transition aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -227,6 +229,8 @@ async function build() {
   CASE_STUDIES.forEach((p, i) => pages.push(caseStudyPage(p, CASE_STUDIES[(i + 1) % CASE_STUDIES.length])));
   LANDING.forEach((d) => pages.push(landingPage(d, SITE)));
   pages.push(locationsPage(SITE));
+  pages.push(blogIndexPage());
+  POSTS.forEach((p) => pages.push(blogPostPage(p)));
   for (const { meta } of pages) {
     if (meta.title.length > 65) console.warn(`⚠ Long title (${meta.title.length}) ${meta.route}`);
     if (meta.description.length > 165 || meta.description.length < 110) console.warn(`⚠ Description length ${meta.description.length} ${meta.route}`);

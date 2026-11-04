@@ -2,6 +2,7 @@
 // Each page has unique copy built around its own keyword cluster.
 import { PORTFOLIO } from './portfolio.mjs';
 import { workCard } from './case-study.mjs';
+import { blogRelatedHtml } from './blog-page.mjs';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const strip = (s) => String(s).replace(/<[^>]+>/g, '');
@@ -569,6 +570,8 @@ ${d.pricing ? `<section class="section">
     ${faqHtml(d.faqs)}
   </div>
 </section>
+
+${d.slug === 'affordable' ? blogRelatedHtml() : ''}
 
 <section class="section--tight">
   <div class="container">

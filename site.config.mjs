@@ -24,5 +24,6 @@ export const NAV = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Case Studies', href: '/case-studies' },
   { label: 'Reviews', href: '/testimonials' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ];
